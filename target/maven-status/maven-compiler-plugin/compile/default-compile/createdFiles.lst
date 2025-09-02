@@ -1,5 +1,0 @@
-com\example\techsupportapi\model\Request.class
-com\example\techsupportapi\TechSupportApiApplication.class
-com\example\techsupportapi\repository\RequestRepository.class
-com\example\techsupportapi\service\RequestService.class
-com\example\techsupportapi\controller\RequestController.class
