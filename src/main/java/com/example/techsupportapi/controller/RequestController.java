@@ -13,7 +13,7 @@ import com.example.techsupportapi.model.Request;
 import com.example.techsupportapi.service.RequestService;
 
 @RestController
-@RequestMapping("/solicitudes")
+@RequestMapping
 public class RequestController {
 
     private final RequestService requestService;
@@ -23,13 +23,18 @@ public class RequestController {
         this.requestService = requestService;
     }
 
-    @PostMapping
+    @PostMapping("/solicitudes")
     public Request createRequest(@RequestBody Request request) {
         return requestService.createRequest(request);
     }
 
-    @GetMapping
+    @GetMapping("/solicitudes")
     public List<Request> getAllRequests() {
         return requestService.getAllRequests();
+    }
+
+    @GetMapping("/temas")
+    public List<String> getTopics() {
+        return requestService.getTopics();
     }
 }

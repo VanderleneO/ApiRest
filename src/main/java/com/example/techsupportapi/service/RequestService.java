@@ -1,6 +1,7 @@
 package com.example.techsupportapi.service;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,6 +22,15 @@ public class RequestService {
         this.requestRepository = requestRepository;
     }
 
+    // Lista predefinida de temas
+    private static final List<String> PREDEFINED_TOPICS = Arrays.asList(
+            "Redes",
+            "Hardware",
+            "Software",
+            "Seguridad",
+            "Acceso a Correo Electrónico",
+            "Impresoras");
+
     public Request createRequest(Request request) {
         request.setRequestDate(LocalDateTime.now());
         request.setStatus("Pendiente");
@@ -31,5 +41,9 @@ public class RequestService {
         return requestRepository.findAll().stream()
                 .sorted(Comparator.comparing(Request::getRequestDate))
                 .collect(Collectors.toList());
+    }
+
+    public List<String> getTopics() {
+        return PREDEFINED_TOPICS;
     }
 }
