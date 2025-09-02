@@ -25,6 +25,7 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
+    
 
     <!-- Dependencia para pruebas, incluida por defecto en Spring Boot -->
     <dependency>
