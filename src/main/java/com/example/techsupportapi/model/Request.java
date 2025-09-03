@@ -1,22 +1,22 @@
 package com.example.techsupportapi.model;
 
-import java.time.LocalDateTime;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class Request {
 
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
-        private String applicantName;
-        private LocalDateTime requestDate;
-        private String topic;
+        private String title;
         private String description;
         private String status;
-        private String attendedBy;
-        private LocalDateTime attendedAt;
-        private LocalDateTime lastEditedAt;
+        private String assignee;
 
-        public Request() {
-        }
-
+        // Getters y setters
         public Long getId() {
                 return id;
         }
@@ -25,28 +25,12 @@ public class Request {
                 this.id = id;
         }
 
-        public String getApplicantName() {
-                return applicantName;
+        public String getTitle() {
+                return title;
         }
 
-        public void setApplicantName(String applicantName) {
-                this.applicantName = applicantName;
-        }
-
-        public LocalDateTime getRequestDate() {
-                return requestDate;
-        }
-
-        public void setRequestDate(LocalDateTime requestDate) {
-                this.requestDate = requestDate;
-        }
-
-        public String getTopic() {
-                return topic;
-        }
-
-        public void setTopic(String topic) {
-                this.topic = topic;
+        public void setTitle(String title) {
+                this.title = title;
         }
 
         public String getDescription() {
@@ -65,27 +49,11 @@ public class Request {
                 this.status = status;
         }
 
-        public String getAttendedBy() {
-                return attendedBy;
+        public String getAssignee() {
+                return assignee;
         }
 
-        public void setAttendedBy(String attendedBy) {
-                this.attendedBy = attendedBy;
-        }
-
-        public LocalDateTime getAttendedAt() {
-                return attendedAt;
-        }
-
-        public void setAttendedAt(LocalDateTime attendedAt) {
-                this.attendedAt = attendedAt;
-        }
-
-        public LocalDateTime getLastEditedAt() {
-                return lastEditedAt;
-        }
-
-        public void setLastEditedAt(LocalDateTime lastEditedAt) {
-                this.lastEditedAt = lastEditedAt;
+        public void setAssignee(String assignee) {
+                this.assignee = assignee;
         }
 }
