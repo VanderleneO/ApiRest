@@ -1,1 +1,15 @@
-target/
+# Ignorar los directorios de compilación y los archivos generados
+
+/target/
+.mvn/
+*.class
+
+
+
+.idea/
+.vscode/
+
+
+
+.DS_Store
+*.log

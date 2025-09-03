@@ -2,11 +2,9 @@ package com.example.techsupportapi.model;
 
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Request {
 
-        private Integer id;
+        private Long id;
         private String applicantName;
         private LocalDateTime requestDate;
         private String topic;
@@ -17,25 +15,13 @@ public class Request {
         private LocalDateTime lastEditedAt;
 
         public Request() {
-
         }
 
-        public Request(@JsonProperty("applicantName") String applicantName,
-                        @JsonProperty("topic") String topic,
-                        @JsonProperty("description") String description) {
-                this.applicantName = applicantName;
-                this.topic = topic;
-                this.description = description;
-                this.status = "Pendiente";
-                this.requestDate = LocalDateTime.now();
-        }
-
-        // Getters y Setters
-        public Integer getId() {
+        public Long getId() {
                 return id;
         }
 
-        public void setId(Integer id) {
+        public void setId(Long id) {
                 this.id = id;
         }
 

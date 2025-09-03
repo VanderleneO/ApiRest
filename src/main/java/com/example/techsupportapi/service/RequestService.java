@@ -3,7 +3,9 @@ package com.example.techsupportapi.service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.techsupportapi.model.Request;
@@ -11,15 +13,16 @@ import com.example.techsupportapi.repository.RequestRepository;
 
 @Service
 public class RequestService {
-    private final RequestRepository requestRepository;
 
-    public RequestService(RequestRepository requestRepository) {
-        this.requestRepository = requestRepository;
-    }
+    @Autowired
+    private RequestRepository requestRepository;
+
+    private final AtomicLong counter = new AtomicLong();
 
     public Request createRequest(Request request) {
-        request.setRequestDate(LocalDateTime.now());
+        request.setId(counter.incrementAndGet());
         request.setStatus("Pendiente");
+        request.setRequestDate(LocalDateTime.now());
         return requestRepository.save(request);
     }
 
@@ -27,20 +30,19 @@ public class RequestService {
         return requestRepository.findAll();
     }
 
-    public Optional<Request> getRequestById(Integer id) {
+    public Optional<Request> getRequestById(Long id) {
         return requestRepository.findById(id);
     }
 
-    public Optional<Request> markAsAttended(Integer id, String attendedBy) {
-        Optional<Request> optionalRequest = requestRepository.findById(id);
-        if (optionalRequest.isPresent()) {
-            Request request = optionalRequest.get();
-            request.setStatus("Atendida");
-            request.setAttendedBy(attendedBy);
-            request.setAttendedAt(LocalDateTime.now());
-            request.setLastEditedAt(LocalDateTime.now());
-            requestRepository.save(request);
+    public Optional<Request> editRequest(Long id, Request updatedRequest) {
+        Optional<Request> existingRequestOpt = requestRepository.findById(id);
+        if (existingRequestOpt.isPresent()) {
+            Request existingRequest = existingRequestOpt.get();
+            existingRequest.setTopic(updatedRequest.getTopic());
+            existingRequest.setDescription(updatedRequest.getDescription());
+            existingRequest.setLastEditedAt(LocalDateTime.now());
+            return Optional.of(requestRepository.save(existingRequest));
         }
-        return optionalRequest;
+        return Optional.empty();
     }
 }
