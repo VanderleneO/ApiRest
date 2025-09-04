@@ -1,7 +1,5 @@
 package com.example.techsupportapi.model;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,12 +11,12 @@ public class Request {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
-        private String name;
-        private LocalDate dateRequest;
-        private String themeRequest;
+        private String title;
         private String description;
+        private String status;
+        private String assignee;
 
-        // Getters y Setters
+        // Getters y setters
         public Long getId() {
                 return id;
         }
@@ -27,28 +25,12 @@ public class Request {
                 this.id = id;
         }
 
-        public String getName() {
-                return name;
+        public String getTitle() {
+                return title;
         }
 
-        public void setName(String name) {
-                this.name = name;
-        }
-
-        public LocalDate getDateRequest() {
-                return dateRequest;
-        }
-
-        public void setDateRequest(LocalDate dateRequest) {
-                this.dateRequest = dateRequest;
-        }
-
-        public String getThemeRequest() {
-                return themeRequest;
-        }
-
-        public void setThemeRequest(String themeRequest) {
-                this.themeRequest = themeRequest;
+        public void setTitle(String title) {
+                this.title = title;
         }
 
         public String getDescription() {
@@ -57,5 +39,21 @@ public class Request {
 
         public void setDescription(String description) {
                 this.description = description;
+        }
+
+        public String getStatus() {
+                return status;
+        }
+
+        public void setStatus(String status) {
+                this.status = status;
+        }
+
+        public String getAssignee() {
+                return assignee;
+        }
+
+        public void setAssignee(String assignee) {
+                this.assignee = assignee;
         }
 }

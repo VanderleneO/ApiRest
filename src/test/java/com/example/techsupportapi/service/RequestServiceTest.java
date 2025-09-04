@@ -26,21 +26,25 @@ public class RequestServiceTest {
 
     @Test
     void saveRequest_ShouldReturnSavedRequest() {
-
+        // Arrange
         Request requestToSave = new Request();
-        requestToSave.setThemeRequest("Problema de red");
+        requestToSave.setTitle("Problema de software");
+        requestToSave.setDescription("La aplicación se cierra inesperadamente.");
 
         Request savedRequest = new Request();
         savedRequest.setId(1L);
-        savedRequest.setThemeRequest("Problema de red");
+        savedRequest.setTitle("Problema de software");
+        savedRequest.setDescription("La aplicación se cierra inesperadamente.");
 
         when(requestRepository.save(any(Request.class))).thenReturn(savedRequest);
 
+        // Act
         Request result = requestService.saveRequest(requestToSave);
 
+        // Assert
         assertNotNull(result);
         assertEquals(1L, result.getId());
-        assertEquals("Problema de red", result.getThemeRequest());
+        assertEquals("Problema de software", result.getTitle());
         verify(requestRepository, times(1)).save(requestToSave);
     }
 }
