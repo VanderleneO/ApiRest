@@ -49,7 +49,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+git add pom.xml            <scope>test</scope>
         </dependency>
     </dependencies>
 

@@ -57,17 +57,16 @@ public class RequestController {
         }
     }
 
-    // Nuevo endpoint para la eliminación de una solicitud
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteRequest(@PathVariable Long id) {
         try {
             requestService.deleteRequest(id);
             return ResponseEntity.noContent().build();
         } catch (IllegalArgumentException e) {
-            // Manejar el caso donde el estado es "Pendiente"
+
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         } catch (RuntimeException e) {
-            // Manejar el caso donde no se encuentra la solicitud
+
             return ResponseEntity.notFound().build();
         }
     }
