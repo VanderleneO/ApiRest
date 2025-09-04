@@ -1,63 +1,37 @@
 package com.example.techsupportapi.model;
 
-import java.time.LocalDateTime;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-/**
- * Clase de modelo que representa una solicitud de soporte.
- * Esta clase es mutable para permitir que el servicio y el repositorio le
- * asignen
- * un ID y una fecha de creacion.
- */
+@Entity
+@Table(name = "requests")
 public class Request {
-        private int id;
-        private String applicantName;
-        private LocalDateTime requestDate;
-        private String topic;
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
+        private String title;
         private String description;
         private String status;
+        private String assignee;
 
-        public Request() {
-                // Constructor vacio para serializacion de JSON
-        }
-
-        // Constructor para la creacion inicial de la solicitud
-        public Request(String applicantName, String topic, String description) {
-                this.applicantName = applicantName;
-                this.topic = topic;
-                this.description = description;
-        }
-
-        // Getters y Setters
-        public int getId() {
+        public Long getId() {
                 return id;
         }
 
-        public void setId(int id) {
+        public void setId(Long id) {
                 this.id = id;
         }
 
-        public String getApplicantName() {
-                return applicantName;
+        public String getTitle() {
+                return title;
         }
 
-        public void setApplicantName(String applicantName) {
-                this.applicantName = applicantName;
-        }
-
-        public LocalDateTime getRequestDate() {
-                return requestDate;
-        }
-
-        public void setRequestDate(LocalDateTime requestDate) {
-                this.requestDate = requestDate;
-        }
-
-        public String getTopic() {
-                return topic;
-        }
-
-        public void setTopic(String topic) {
-                this.topic = topic;
+        public void setTitle(String title) {
+                this.title = title;
         }
 
         public String getDescription() {
@@ -74,5 +48,13 @@ public class Request {
 
         public void setStatus(String status) {
                 this.status = status;
+        }
+
+        public String getAssignee() {
+                return assignee;
+        }
+
+        public void setAssignee(String assignee) {
+                this.assignee = assignee;
         }
 }
