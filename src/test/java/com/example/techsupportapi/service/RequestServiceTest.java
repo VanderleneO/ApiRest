@@ -14,6 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.example.techsupportapi.model.Request;
 import com.example.techsupportapi.repository.RequestRepository;
+import com.example.techsupportapi.service.RequestService;
 
 @ExtendWith(MockitoExtension.class)
 public class RequestServiceTest {
